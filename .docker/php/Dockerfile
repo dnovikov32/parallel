@@ -32,7 +32,8 @@ RUN apt-get clean && apt-get update && \
     libxrender1 \
     git \
     python \
-    mc
+    mc \
+    htop
 
 RUN docker-php-ext-configure gd --with-jpeg=/usr/include --with-freetype=/usr/include
 
