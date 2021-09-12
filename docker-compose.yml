@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+
+  php:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    build:
+      context: ./.docker/php
+      args:
+        - USER_USERNAME
+        - USER_UID
+        - USER_GID
+    environment:
+      PHP_IDE_CONFIG: serverName=docker-cli
+    secrets:
+      - id_rsa
+    volumes:
+      - ./:/usr/share/nginx/html:rw
+    networks:
+      - app-network
+
+secrets:
+  id_rsa:
+    file: ~/.ssh/id_rsa
+
+networks:
+  app-network:
